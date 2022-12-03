@@ -11,7 +11,12 @@ import com.mongo.test.SpringMongoDb.entity.Student;
 public interface StudentRepository extends MongoRepository<Student, String> {
 
 	List<Student> findByName(String name);
+	
+	List<Student> findByNameAndEmail(String name, String email);
 
-	List<Student> getAllWithPagnigation(int pageNo, int size);
+	List<Student> findByDepartmentDepartmentName(String departmentName);
 
+	List<Student> findByEmailIsLike(String email);
+
+	List<Student> findByNameStartsWith(String name);
 }

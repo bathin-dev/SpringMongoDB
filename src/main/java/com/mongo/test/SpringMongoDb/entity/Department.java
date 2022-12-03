@@ -1,6 +1,10 @@
 package com.mongo.test.SpringMongoDb.entity;
 
+import org.springframework.data.mongodb.core.mapping.Field;
+
 public class Department {
+	
+//	@Field(name="department_name")
 	private String departmentName;
 	private String location;
 	

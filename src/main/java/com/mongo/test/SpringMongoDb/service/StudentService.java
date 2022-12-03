@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import com.mongo.test.SpringMongoDb.entity.Student;
@@ -25,7 +26,8 @@ public class StudentService {
 	}
 
 	public List<Student> getAllStudent() {
-		return studentRepository.findAll();
+		Sort sort = Sort.by(Sort.Direction.ASC, "name","email");
+		return studentRepository.findAll(sort);
 	}
 
 	public Student updateStudent(Student student) {
@@ -41,8 +43,24 @@ public class StudentService {
 		return studentRepository.findByName(name);
 	}
 
-	public List<Student> getAllWithPagnigation(int pageNo, int size) {
+	public List<Student> getAllWithPagination(int pageNo, int size) { 
 		Pageable pageable = PageRequest.of(pageNo - 1, size);
 		return studentRepository.findAll(pageable).getContent();
+	}
+
+	public List<Student> getStudentByNameAndEmail(String name, String email) {
+		return studentRepository.findByNameAndEmail(name, email);
+	}
+
+	public List<Student> getByDepartmentName(String deptName) {
+		return studentRepository.findByDepartmentDepartmentName(deptName);
+	}
+
+	public List<Student> emailLike(String email) {
+		return studentRepository.findByEmailIsLike(email);
+	}
+
+	public List<Student> nameStartWith(String name) {
+		return studentRepository.findByNameStartsWith(name);
 	}
 }

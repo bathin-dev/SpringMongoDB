@@ -53,8 +53,30 @@ public class StudentController {
 		return studentService.getStudentByName(name);
 	}
 	
+	@GetMapping("/getByNameAndEmail")
+	public List<Student> getStudentByName(@RequestParam String name, @RequestParam String email) {
+		return studentService.getStudentByNameAndEmail(name, email);
+	}
+	
 	@GetMapping("/allWithPagnigation")
 	public List<Student> getStudentByName(@RequestParam int pageNo, @RequestParam int size) {
-		return studentService.getAllWithPagnigation(pageNo, size);
+		return studentService.getAllWithPagination(pageNo, size);
 	}
+	
+	@GetMapping("/byDepartmentName")
+	public List<Student> getStudentByDeptName(@RequestParam String deptName) {
+		return studentService.getByDepartmentName(deptName);
+	}
+	
+	@GetMapping("/emailLike")
+	public List<Student> emailLike(@RequestParam String email) {
+		return studentService.emailLike(email);
+	}
+	
+	
+	@GetMapping("/nameStartWith")
+	public List<Student> nameStartWith(@RequestParam String name) {
+		return studentService.nameStartWith(name);
+	}
+	
 }
