@@ -9,7 +9,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import com.mongo.test.SpringMongoDb.entity.Student;
+import com.mongo.test.SpringMongoDb.repository.DepartmentRepository;
 import com.mongo.test.SpringMongoDb.repository.StudentRepository;
+import com.mongo.test.SpringMongoDb.repository.SubjectRepository;
 
 @Component
 public class StudentService {
@@ -17,7 +19,23 @@ public class StudentService {
 	@Autowired
 	StudentRepository studentRepository;
 	
+	@Autowired
+	DepartmentRepository departmentRepository;
+	
+	@Autowired
+	SubjectRepository subjectRepository;
+	
 	public Student createStudent(Student student) {
+		//Also save department entity incase exist 
+		if (student.getDepartment() != null) {
+			departmentRepository.save(student.getDepartment());
+		}
+		
+		//Also save all subject related		
+		if (student.getSubjects() != null && student.getSubjects().size() >0) {
+			subjectRepository.saveAll(student.getSubjects());
+		}
+		
 		return studentRepository.save(student);
 	}
 

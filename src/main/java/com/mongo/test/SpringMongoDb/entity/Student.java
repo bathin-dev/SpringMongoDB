@@ -1,6 +1,9 @@
 package com.mongo.test.SpringMongoDb.entity;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -15,7 +18,12 @@ public class Student {
 	@Field(name = "email")
 	private String email;
 
-	Department department; 
+	@DBRef
+	private Department department; 
+	
+	@DBRef
+	private List<Subject> subjects;
+	
 	
 	public String getId() {
 		return id;
@@ -41,6 +49,14 @@ public class Student {
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
+	public List<Subject> getSubjects() {
+		return subjects;
+	}
+	public void setSubjects(List<Subject> subjects) {
+		this.subjects = subjects;
+	}
+	
+	
 	
 //	
 //	public Student(String id, String name, String email) {

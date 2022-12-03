@@ -1,10 +1,16 @@
 package com.mongo.test.SpringMongoDb.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+@Document(collation = "department")
 public class Department {
 	
-//	@Field(name="department_name")
+	@Id
+	private String id;
+	
+	@Field(name="department_name")
 	private String departmentName;
 	private String location;
 	
@@ -21,6 +27,14 @@ public class Department {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	
 //	public Department(String departmentName, String location) {
 //		super();
 //		this.departmentName = departmentName;
