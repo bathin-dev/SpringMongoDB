@@ -79,4 +79,9 @@ public class StudentController {
 		return studentService.nameStartWith(name);
 	}
 	
+	@GetMapping("/byDepartmentId")
+	public List<Student> byDepartmentId(@RequestParam String deptId) {
+		return studentService.byDepartmentId(deptId);
+	}
+	
 }

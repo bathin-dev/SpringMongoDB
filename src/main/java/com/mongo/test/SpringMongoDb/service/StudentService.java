@@ -35,7 +35,7 @@ public class StudentService {
 		if (student.getSubjects() != null && student.getSubjects().size() >0) {
 			subjectRepository.saveAll(student.getSubjects());
 		}
-		
+		//Save main data of student
 		return studentRepository.save(student);
 	}
 
@@ -80,5 +80,9 @@ public class StudentService {
 
 	public List<Student> nameStartWith(String name) {
 		return studentRepository.findByNameStartsWith(name);
+	}
+
+	public List<Student> byDepartmentId(String deptId) {
+		return studentRepository.findByDepartmentId(deptId);
 	}
 }
